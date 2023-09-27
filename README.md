@@ -1,0 +1,10 @@
+- grafični koledarček
+- prikazujejo se dnevi v trenutno izbranem mesecu in letu
+- mesec (izberemo s combo box-om) in leto (vpišemo v polje) lahko poljubno spremenimo in ob tem se prikažejo ustrezni dnevi
+- vpis poljubnega datuma v polju na koledarju, povzroči skok na ustrezen prikaz meseca v letu
+- nedelje označene z drugo barvo
+- datoteka s seznamom praznikov in oznaka ali je praznik ponavljajoč (ascii datoteka, datumi in oznaka ločeni s poljubnim znakom)
+- datoteko pripravi sam, ni potrebno vseh praznikov ampak le nekaj primerov
+- prazniki drugače označeni kot ostali dnevi na koledarju
+- dnevi v vrsticah oz. 7 dni v eni vrstici
+- zapiranje koledarja

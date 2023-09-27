@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link type="text/css" rel="stylesheet" href="styles.css" />
+    <title>Ixtlan Calendar</title>
+  </head>
+  <body>
+    <main class="container">
+      <header class="title-container">
+        <h1 class="title">Ixtlan Calendar</h1>
+      </header>
+      <section class="content-container">
+        <input type="text" placeholder="DD/MM/YYYY" />
+        <button class="btn btn-jump">Jump</button>
+        <button class="btn btn-toggle">Open</button>
+        <div class="calendar-container">
+          <div class="calendar-header">
+            <button class="btn btn-prev">Prev</button>
+            <h3 class="calendar-month-year">
+              <span class="calendar-month"></span>
+              <span class="calendar-year"></span>
+            </h3>
+            <button class="btn btn-next">Next</button>
+          </div>
+          <div class="calendar-body">
+            <div class="calendar">
+              <div class="calendar-days">
+                <span>Mo</span>
+                <span>Tu</span>
+                <span>We</span>
+                <span>Th</span>
+                <span>Fr</span>
+                <span>Sa</span>
+                <span>Su</span>
+              </div>
+              <div class="calendar-grid"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- TODO: Move this in some module file -->
+    <script type="text/javascript" src="constants.js"></script>
+    <script type="text/javascript" src="script.js"></script>
+  </body>
+</html>
