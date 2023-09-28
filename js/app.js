@@ -1,3 +1,6 @@
+import { GRID_SIZE, ERROR_TIMEOUT, SUNDAY_INDEXES } from "./constants.js";
+import { getFirstDayOfMonth, getDaysInMonth, isValidDate } from "./helpers.js";
+
 const calendarGrid = document.querySelector(".calendar-grid");
 const errorMsg = document.querySelector(".error-msg");
 
@@ -7,11 +10,6 @@ const jumpInput = document.querySelector(".jump-input");
 
 const calendarShowBtn = document.querySelector(".btn-show");
 const calendarJumpBtn = document.querySelector(".btn-jump");
-
-// Constants
-const GRID_SIZE = 42;
-const ERROR_TIMEOUT = 3000;
-const SUNDAY_INDEXES = [6, 13, 20, 27, 34, 41];
 
 // Initial state and event listeners
 const today = new Date();
@@ -157,23 +155,6 @@ async function fetchHolidays() {
   } catch (error) {
     console.error(error);
   }
-}
-
-// Helper functions
-function getFirstDayOfMonth(year, month) {
-  const firstDayOfMonth = new Date(year, month - 1, 1);
-  let firstDayOfWeek = firstDayOfMonth.getDay();
-  firstDayOfWeek = firstDayOfWeek === 0 ? 6 : firstDayOfWeek - 1;
-
-  return firstDayOfWeek;
-}
-
-function getDaysInMonth(year, month) {
-  return new Date(year, month, 0).getDate();
-}
-
-function isValidDate(date) {
-  return date instanceof Date && !isNaN(date.valueOf());
 }
 
 function showErrorMsg() {
