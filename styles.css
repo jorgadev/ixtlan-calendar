@@ -124,7 +124,7 @@ body {
   height: 2rem;
 }
 
-.calendar-day.red {
+.calendar-day.grey {
   background-color: var(--grey);
   border-radius: 50%;
   color: var(--white);

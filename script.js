@@ -8,7 +8,12 @@ const jumpInput = document.querySelector(".jump-input");
 const calendarShowBtn = document.querySelector(".btn-show");
 const calendarJumpBtn = document.querySelector(".btn-jump");
 
-// INITIAL STATE & LISTENERS
+// Constants
+const GRID_SIZE = 42;
+const ERROR_TIMEOUT = 3000;
+const SUNDAY_INDEXES = [6, 13, 20, 27, 34, 41];
+
+// Initial state and event listeners
 const today = new Date();
 const selectedDate = {
   day: today.getDate(),
@@ -18,13 +23,14 @@ const selectedDate = {
 
 calendarJumpBtn.addEventListener("click", jumpBtnHandler);
 calendarShowBtn.addEventListener("click", toggleBtnHandler);
+jumpInput.addEventListener("input", jumpInputHandler);
 
 const holidays = {};
 fetchHolidays();
 
 changeDate(selectedDate.day, selectedDate.month, selectedDate.year);
 
-// CALENDAR FUNCTIONS
+// Calendar functions
 function fillCalendarGrid() {
   calendarGrid.innerHTML = "";
 
@@ -35,7 +41,7 @@ function fillCalendarGrid() {
   const daysInMonth = getDaysInMonth(selectedDate.year, selectedDate.month);
 
   let day = 1;
-  for (let i = 0; i < 42; i++) {
+  for (let i = 0; i < GRID_SIZE; i++) {
     const calendarDay = document.createElement("span");
     calendarDay.classList.add("calendar-day");
 
@@ -44,9 +50,9 @@ function fillCalendarGrid() {
     } else {
       calendarDay.textContent = day;
 
-      // Check if sunday
-      if ([6, 13, 20, 27, 34, 41].includes(i)) {
-        calendarDay.classList.add("red");
+      // Check if Sunday
+      if (SUNDAY_INDEXES.includes(i)) {
+        calendarDay.classList.add("grey");
       }
 
       // Check if holiday
@@ -96,27 +102,10 @@ function changeDate(day, month, year) {
   }
 }
 
-function getFirstDayOfMonth(year, month) {
-  const firstDayOfMonth = new Date(year, month - 1, 1);
-  let firstDayOfWeek = firstDayOfMonth.getDay();
-  firstDayOfWeek = firstDayOfWeek === 0 ? 6 : firstDayOfWeek - 1;
-
-  return firstDayOfWeek;
-}
-
-function getDaysInMonth(year, month) {
-  return new Date(year, month, 0).getDate();
-}
-
-function isValidDate(date) {
-  return date instanceof Date && !isNaN(date.valueOf());
-}
-
-// HANDLERS
+// Handlers
 function jumpBtnHandler() {
   const date = new Date(jumpInput.value);
 
-  // Validate entered date
   if (isValidDate(date)) {
     const day = date.getDate();
     const month = date.getMonth() + 1;
@@ -135,14 +124,22 @@ function toggleBtnHandler() {
   changeDate(day, month, year);
 }
 
-function showErrorMsg() {
-  errorMsg.style.display = "block";
-  setTimeout(() => {
-    errorMsg.style.display = "none";
-  }, 3000);
+function jumpInputHandler(e) {
+  let value = e.target.value;
+  value = value.replace(/[^\d-]/g, "");
+
+  if (value.length >= 5 && value.charAt(4) !== "-") {
+    value = value.slice(0, 4) + "-" + value.slice(4);
+  }
+
+  if (value.length >= 8 && value.charAt(7) !== "-") {
+    value = value.slice(0, 7) + "-" + value.slice(7);
+  }
+
+  jumpInput.value = value;
 }
 
-// FETCH
+// Fetch holidays and update grid
 async function fetchHolidays() {
   try {
     const response = await fetch("assets/holidays.txt");
@@ -160,4 +157,28 @@ async function fetchHolidays() {
   } catch (error) {
     console.error(error);
   }
+}
+
+// Helper functions
+function getFirstDayOfMonth(year, month) {
+  const firstDayOfMonth = new Date(year, month - 1, 1);
+  let firstDayOfWeek = firstDayOfMonth.getDay();
+  firstDayOfWeek = firstDayOfWeek === 0 ? 6 : firstDayOfWeek - 1;
+
+  return firstDayOfWeek;
+}
+
+function getDaysInMonth(year, month) {
+  return new Date(year, month, 0).getDate();
+}
+
+function isValidDate(date) {
+  return date instanceof Date && !isNaN(date.valueOf());
+}
+
+function showErrorMsg() {
+  errorMsg.style.display = "block";
+  setTimeout(() => {
+    errorMsg.style.display = "none";
+  }, ERROR_TIMEOUT);
 }
