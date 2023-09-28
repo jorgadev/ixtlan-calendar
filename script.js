@@ -5,7 +5,7 @@ const monthSelect = document.querySelector(".month-select");
 const yearInput = document.querySelector(".year-input");
 const jumpInput = document.querySelector(".jump-input");
 
-const calendarToggleBtn = document.querySelector(".btn-toggle");
+const calendarShowBtn = document.querySelector(".btn-show");
 const calendarJumpBtn = document.querySelector(".btn-jump");
 
 // INITIAL STATE & LISTENERS
@@ -17,7 +17,7 @@ const selectedDate = {
 };
 
 calendarJumpBtn.addEventListener("click", jumpBtnHandler);
-calendarToggleBtn.addEventListener("click", toggleBtnHandler);
+calendarShowBtn.addEventListener("click", toggleBtnHandler);
 
 const holidays = {};
 fetchHolidays();
@@ -145,7 +145,7 @@ function showErrorMsg() {
 // FETCH
 async function fetchHolidays() {
   try {
-    const response = await fetch("holidays.txt");
+    const response = await fetch("assets/holidays.txt");
     const lines = await response.text();
 
     lines.split(/\r\n|\n/).forEach((line) => {
