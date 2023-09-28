@@ -81,13 +81,18 @@ function changeDate(day, month, year) {
 
   const date = new Date(Date.UTC(year, month - 1, day));
   date.setUTCFullYear(year);
-  const jumpInputValue = date.toISOString().slice(0, 10);
 
-  jumpInput.value = jumpInputValue;
-  monthSelect.value = month - 1;
-  yearInput.value = year;
+  if (isValidDate(date)) {
+    const jumpInputValue = date.toISOString().slice(0, 10);
 
-  fillCalendarGrid();
+    jumpInput.value = jumpInputValue;
+    monthSelect.value = month - 1;
+    yearInput.value = year;
+
+    fillCalendarGrid();
+  } else {
+    alert("Invalid Date");
+  }
 }
 
 function getFirstDayOfMonth(year, month) {
@@ -102,12 +107,16 @@ function getDaysInMonth(year, month) {
   return new Date(year, month, 0).getDate();
 }
 
+function isValidDate(date) {
+  return date instanceof Date && !isNaN(date.valueOf());
+}
+
 // HANDLERS
 function jumpBtnHandler() {
   const date = new Date(jumpInput.value);
 
   // Validate entered date
-  if (date instanceof Date && !isNaN(date.valueOf())) {
+  if (isValidDate(date)) {
     const day = date.getDate();
     const month = date.getMonth() + 1;
     const year = date.getFullYear();

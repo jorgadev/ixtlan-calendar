@@ -1,7 +1,97 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&family=Roboto&display=swap");
+:root {
+  --blue: #243f8f;
+  --green: #27a9e0;
+  --red: #ff816c;
+  --grey: #aaaaaa;
+  --white: #ffffff;
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Montserrat";
+}
+
+html,
+body {
+  height: 100vh;
+}
+
+body {
+  display: grid;
+  place-items: center;
+}
+
+.container {
+  width: 300px;
+}
+
+.title-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.title-container img {
+  width: 4rem;
+  margin-right: 0.5rem;
+}
+
+.calendar-header {
+  display: grid;
+  grid-row-gap: 0.5rem;
+  place-items: center;
+  margin-bottom: 2rem;
+}
+
+.calendar-header .calendar-header-top {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  grid-column-gap: 0.2rem;
+}
+
+.calendar-header .calendar-header-divider {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.calendar-header .calendar-header-divider::before,
+.calendar-header .calendar-header-divider::after {
+  flex: 1;
+  content: "";
+  padding: 0.02rem;
+  background-color: var(--grey);
+  margin: 5px;
+}
+
+.calendar-header .calendar-header-bottom {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-column-gap: 0.2rem;
+}
+
+.month-select,
+.year-input,
+.btn-toggle,
+.jump-input,
+.btn-jump {
+  width: 100%;
+  height: 1.5rem;
+}
+
+.btn {
+  background-color: var(--blue);
+  color: var(--white);
+  border: none;
+  padding: 3px;
+}
+.btn:hover {
+  cursor: pointer;
+  opacity: 0.9;
 }
 
 .calendar-days {
@@ -11,6 +101,8 @@
 
 .calendar-days span {
   text-align: center;
+  color: var(--blue);
+  font-weight: 500;
 }
 
 .calendar-grid {
@@ -19,6 +111,9 @@
   grid-template-rows: repeat(6, 1fr);
 }
 
-.calendar-day {
-  text-align: center;
+.calendar-day,
+.calendar-days span {
+  display: grid;
+  place-items: center;
+  height: 2rem;
 }

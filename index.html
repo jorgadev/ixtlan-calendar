@@ -4,41 +4,45 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link type="text/css" rel="stylesheet" href="styles.css" />
+    <link rel="icon" href="logo.svg" type="image/x-icon" />
     <title>Ixtlan Calendar</title>
   </head>
   <body>
     <main class="container">
       <header class="title-container">
-        <h1 class="title">Ixtlan Calendar</h1>
+        <img src="logo.svg" alt="Ixtlan logo" />
+        <h1>Calendar</h1>
       </header>
       <section class="content-container">
         <div class="calendar-header">
-          <select class="month-select">
-            <option value="0">January</option>
-            <option value="1">February</option>
-            <option value="2">March</option>
-            <option value="3">April</option>
-            <option value="4">May</option>
-            <option value="5">June</option>
-            <option value="6">July</option>
-            <option value="7">August</option>
-            <option value="8">September</option>
-            <option value="9">October</option>
-            <option value="10">November</option>
-            <option value="11">December</option>
-          </select>
-          <input class="year-input" type="number" placeholder="Year" />
-          <button class="btn btn-toggle">Show</button>
-          <br />
-          <span>or</span>
-          <br />
-          <input
-            class="jump-input"
-            type="text"
-            placeholder="YYYY-MM-DD"
-            maxlength="10"
-          />
-          <button class="btn btn-jump">Jump</button>
+          <div class="calendar-header-top">
+            <select class="month-select">
+              <option value="0">January</option>
+              <option value="1">February</option>
+              <option value="2">March</option>
+              <option value="3">April</option>
+              <option value="4">May</option>
+              <option value="5">June</option>
+              <option value="6">July</option>
+              <option value="7">August</option>
+              <option value="8">September</option>
+              <option value="9">October</option>
+              <option value="10">November</option>
+              <option value="11">December</option>
+            </select>
+            <input class="year-input" type="number" placeholder="Year" />
+            <button class="btn btn-toggle">Show</button>
+          </div>
+          <span class="calendar-header-divider">or</span>
+          <div class="calendar-header-bottom">
+            <input
+              class="jump-input"
+              type="text"
+              placeholder="YYYY-MM-DD"
+              maxlength="10"
+            />
+            <button class="btn btn-jump">Jump</button>
+          </div>
         </div>
 
         <div class="calendar-body">
