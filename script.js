@@ -1,4 +1,5 @@
 const calendarGrid = document.querySelector(".calendar-grid");
+const errorMsg = document.querySelector(".error-msg");
 
 const monthSelect = document.querySelector(".month-select");
 const yearInput = document.querySelector(".year-input");
@@ -91,7 +92,7 @@ function changeDate(day, month, year) {
 
     fillCalendarGrid();
   } else {
-    alert("Invalid Date");
+    showErrorMsg();
   }
 }
 
@@ -122,7 +123,7 @@ function jumpBtnHandler() {
     const year = date.getFullYear();
     changeDate(day, month, year);
   } else {
-    alert("Invalid Date");
+    showErrorMsg();
   }
 }
 
@@ -132,6 +133,13 @@ function toggleBtnHandler() {
   const year = parseInt(yearInput.value);
 
   changeDate(day, month, year);
+}
+
+function showErrorMsg() {
+  errorMsg.style.display = "block";
+  setTimeout(() => {
+    errorMsg.style.display = "none";
+  }, 3000);
 }
 
 // FETCH

@@ -3,7 +3,7 @@
   --blue: #243f8f;
   --green: #27a9e0;
   --red: #ff816c;
-  --grey: #aaaaaa;
+  --grey: #cccccc;
   --white: #ffffff;
 }
 
@@ -36,8 +36,8 @@ body {
 }
 
 .title-container img {
-  width: 4rem;
-  margin-right: 0.5rem;
+  width: 3rem;
+  margin-right: 0.2rem;
 }
 
 .calendar-header {
@@ -94,6 +94,11 @@ body {
   opacity: 0.9;
 }
 
+.calendar-body {
+  border: 1px solid var(--grey);
+  padding: 0.5rem;
+}
+
 .calendar-days {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
@@ -109,6 +114,7 @@ body {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   grid-template-rows: repeat(6, 1fr);
+  gap: 10px;
 }
 
 .calendar-day,
@@ -116,4 +122,23 @@ body {
   display: grid;
   place-items: center;
   height: 2rem;
+}
+
+.calendar-day.red {
+  background-color: var(--grey);
+  border-radius: 50%;
+  color: var(--white);
+}
+
+.calendar-day.border {
+  border: 2px solid var(--red);
+  border-radius: 50%;
+}
+
+.error-msg {
+  display: none;
+  text-align: center;
+  margin-top: 0.8rem;
+  color: red;
+  font-size: 0.8rem;
 }
